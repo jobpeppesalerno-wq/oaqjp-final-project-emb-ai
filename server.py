@@ -9,15 +9,19 @@ def sent_analyzer():
     text_to_analyze = request.args.get('textToAnalyze')
     # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
-    # Return a formatted string
-    text1 = "For the given statement, the system response is "
-    text2 = f"'anger': {response['anger']}, "
-    text3 = f"'disgust': {response['disgust']}, "
-    text4 = f"'fear': {response['fear']}, "
-    text5 = f"'joy': {response['joy']} and "
-    text6 = f"'sadness': {response['sadness']}. "
-    text7 = f"The dominant emotion is {response['dominant_emotion']}."
-    result = text1 + text2 + text3 + text4 + text5 + text6 + text7
+    if response ['dominant_emotion'] == None:
+        result = "Invalid text! Please try again!."
+    else:
+        # Return a formatted string
+        text1 = "For the given statement, the system response is "
+        text2 = f"'anger': {response['anger']}, "
+        text3 = f"'disgust': {response['disgust']}, "
+        text4 = f"'fear': {response['fear']}, "
+        text5 = f"'joy': {response['joy']} and "
+        text6 = f"'sadness': {response['sadness']}. "
+        text7 = f"The dominant emotion is {response['dominant_emotion']}."
+        result = text1 + text2 + text3 + text4 + text5 + text6 + text7
+
     return result
 
 @app.route("/")
