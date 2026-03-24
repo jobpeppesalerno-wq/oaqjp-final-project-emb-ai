@@ -1,6 +1,3 @@
-'''
-Service that analyse emotions
-'''
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -20,15 +17,8 @@ def sent_analyzer():
         result = "Invalid text! Please try again!."
     else:
         # Return a formatted string
-        text1 = "For the given statement, the system response is "
-        text2 = f"'anger': {response['anger']}, "
-        text3 = f"'disgust': {response['disgust']}, "
-        text4 = f"'fear': {response['fear']}, "
-        text5 = f"'joy': {response['joy']} and "
-        text6 = f"'sadness': {response['sadness']}. "
-        text7 = f"The dominant emotion is {response['dominant_emotion']}."
-        result = text1 + text2 + text3 + text4 + text5 + text6 + text7
-
+        result = f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']} and 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}."
+    
     return result
 
 @app.route("/")
@@ -40,3 +30,4 @@ def render_index_page():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+    
